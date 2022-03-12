@@ -1,1 +1,1 @@
-# furniture
+# Furniture - java project
