@@ -9,23 +9,24 @@
 <body>
 	<div align="center">
 		<h2 style="background-color: sky">Register Here</h2>
-		<form action="Adduser">
+		<h2>${message}</h2>
+		<form action="signup" method="post">
 			<table>
 				<tr>
-					<td>Username:</td>
-					<td><input type="text" name="username"></td>
+					<td>Firstrname:</td>
+					<td><input type="text" name="firstname"></td>
 				</tr>
 				<tr>
-					<td>Mobile no:</td>
-					<td><input type="number" name="mobileno"></td>
+					<td>Lastname:</td>
+					<td><input type="text" name="lastname"></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="email" name="email"></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
 					<td><input type="password" name="password"></td>
-				</tr>
-				<tr>
-					<td>DOB:</td>
-					<td><input type="text" maxlength="10" placeholder="dd/mm/yyyy" name="dob"></td>
 				</tr>
 				<tr>
 					<td>Address:</td>
@@ -37,7 +38,7 @@
 				</tr>
 				<tr>
 					<td><input type="submit" value="submit"></td>
-					<td><a href="index.jsp">Login</a></td>
+					<td><a href="/">Login</a></td>
 				</tr>
 			</table>
 		</form>

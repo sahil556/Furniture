@@ -16,10 +16,5 @@ public class FurnitureApplication {
 
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context =  SpringApplication.run(FurnitureApplication.class, args);
-	
-		
-		
 	}
-	
-	
 }
