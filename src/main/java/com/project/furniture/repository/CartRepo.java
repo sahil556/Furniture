@@ -7,5 +7,5 @@ import com.project.furniture.model.Cart;
 
 @Repository
 public interface CartRepo extends JpaRepository<Cart, Integer> {
-
+	
 }

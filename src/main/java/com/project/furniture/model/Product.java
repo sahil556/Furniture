@@ -24,14 +24,11 @@ public class Product {
 	private String material = "none";
 	private String style = "none";
 	
-	private @NonNull String imageURL;
+	@Column(nullable = true, length = 64)
+	private String imageURL;
+	
 	private @NonNull double price;
 	private String description;
-	
-	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_id", nullable = false)
-    Category category;
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
@@ -48,7 +45,7 @@ public class Product {
 	
 	
 	public Product(String name, int quantity, boolean is_best_seller, boolean is_offer, int discount, String color,
-			String material, String style, String imageURL, double price, String description, Category category) {
+			String material, String style, String imageURL, double price, String description) {
 		super();
 		this.name = name;
 		this.quantity = quantity;
@@ -61,7 +58,7 @@ public class Product {
 		this.imageURL = imageURL;
 		this.price = price;
 		this.description = description;
-		this.category = category;
+		
 	}
 	
 	
@@ -162,13 +159,6 @@ public class Product {
 		this.description = description;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
 
 	@Override
 	public String toString() {

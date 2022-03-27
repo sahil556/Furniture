@@ -15,7 +15,6 @@ public class ProductDao {
 	public ProductDao(String name, String imageUrl, int quantity, double price, String description) {
 		super();
 		this.name = name;
-		this.imageUrl = imageUrl;
 		this.quantity = quantity;
 		this.price = price;
 		this.description = description;
@@ -50,14 +49,6 @@ public class ProductDao {
 		this.name = name;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -81,4 +72,10 @@ public class ProductDao {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@Override
+	public String toString() {
+		return "ProductDao [name=" + name + ", imageUrl=" + imageUrl + ", quantity=" + quantity + ", price=" + price
+				+ ", description=" + description + "]";
+	}
+	
 }

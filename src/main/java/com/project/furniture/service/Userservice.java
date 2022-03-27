@@ -21,7 +21,15 @@ public class Userservice {
         
         if(user.getPassword().equals(signInDao.getPassword()))
         {
-        	 ModelAndView mv = new ModelAndView("user");
+        	ModelAndView mv;
+        	if(user.getRole() != "admin")
+        	{
+        	 mv = new ModelAndView("user");
+        	}
+        	else
+        	{
+        		mv = new ModelAndView("admin");
+        	}
              System.out.println(signInDao);
              mv.addObject("user",user);
              mv.addObject("message", "login successful");
