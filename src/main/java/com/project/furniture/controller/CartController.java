@@ -18,6 +18,7 @@ import com.project.furniture.dao.AddToCart;
 import com.project.furniture.dao.Cartdao;
 import com.project.furniture.model.Product;
 import com.project.furniture.model.User;
+import com.project.furniture.repository.CartRepo;
 import com.project.furniture.service.ProductService;
 import com.project.furniture.service.Userservice;
 
@@ -41,6 +42,8 @@ public class CartController {
 			return new RedirectView("/login");
 		}
 		int customer_id = (Integer)session.getAttribute("id");
+		
+		
 		User user= userservice.getuser(customer_id);
 		Product product = productservice.getProduct(id);
 		productservice.addtocart(user, product, Quantity);
@@ -62,8 +65,7 @@ public class CartController {
 		User user= userservice.getuser(customer_id);
 		Cartdao cartlist = productservice.listCartItems(user);
 		mv.setViewName("cart");
-		mv.addObject("product", cartlist);
-		System.out.println(cartlist);
+		mv.addObject("products", cartlist);
 		return mv;
 		
 		
