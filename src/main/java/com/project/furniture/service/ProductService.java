@@ -9,8 +9,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.project.furniture.dao.CartItemDao;
+import com.project.furniture.dao.Cartdao;
 import com.project.furniture.dao.ProductDao;
+import com.project.furniture.model.Cart;
 import com.project.furniture.model.Product;
+import com.project.furniture.model.User;
+import com.project.furniture.repository.CartRepo;
 import com.project.furniture.repository.ProductRepo;
 import com.project.furniture.utils.FileUploadUtil;
 
@@ -24,7 +29,34 @@ import java.util.Optional;
 public class ProductService {
 	@Autowired
 	private ProductRepo productrepository;
-
+	
+	@Autowired
+	private CartRepo cartrepository;
+	
+	public void addtocart(User user, Product product, int qty)
+	{
+		Cart cart = new Cart(product, qty, user);
+		cartrepository.save(cart);
+		ModelAndView mv = new ModelAndView("home");
+		
+	}
+	
+	public Cartdao listCartItems(User user) {
+        List<Cart> cartList = cartrepository.findAllByUserOrderByCreatedDateDesc(user);
+        List<CartItemDao> cartItems = new ArrayList<>();
+        for (Cart cart:cartList){
+            CartItemDao cartItemDao = getDtoFromCart(cart);
+            cartItems.add(cartItemDao);
+        }
+        double totalCost = 0;
+        for (CartItemDao cartItemDto :cartItems){
+            totalCost += (cartItemDto.getProduct().getPrice()* cartItemDto.getQuantity());
+        }
+        return new Cartdao(cartItems,totalCost);
+    }
+	public static CartItemDao getDtoFromCart(Cart cart) {
+	        return new CartItemDao(cart);
+	    }
 	public ModelAndView saveProduct(ProductDao productdao, MultipartFile multipartFile) {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		Product product = new Product();
@@ -36,6 +68,8 @@ public class ProductService {
 		product.setQuantity(productdao.getQuantity());
 		product.setPrice(productdao.getPrice());
 		product.setDescription(productdao.getDescription());
+		product.setDiscount(productdao.getDiscount());
+		product.setCategory(productdao.getCategory());
 
 		String uploadDir = "src/main/webapp/productimg/";
 		ModelAndView mv = new ModelAndView();
@@ -48,7 +82,7 @@ public class ProductService {
 			return mv;
 		}
 
-		Product savedProduct = productrepository.save(product);
+		productrepository.save(product);
 		mv.setViewName("products");
 		mv.addObject("message", "Product Added successfully !");
 		return mv;
@@ -74,18 +108,25 @@ public class ProductService {
 		return productdao;
 	}
 	
-	public ModelAndView save_upted_product(int product_id, ProductDao productdao, MultipartFile multipartFile) {
+	public ModelAndView save_updated_product(int product_id, ProductDao productdao, MultipartFile multipartFile) {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		Product product = productrepository.getById(product_id);
 		product.setName(productdao.getName());
 		product.setDescription(productdao.getDescription());
 		product.setQuantity(productdao.getQuantity());
 		product.setPrice(productdao.getPrice());
+		product.setDiscount(productdao.getDiscount());
+		product.setCategory(productdao.getCategory());
+		
+		if(!fileName.equals(""))
 		product.setImageURL(fileName);
+		else
+		product.setImageURL(product.getImageURL());
 		productrepository.save(product);
 		ModelAndView mv = new ModelAndView("products");
 		return mv;
 		
 	}
+	
 
 }

@@ -15,14 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.project.furniture.service.ProductService;
+import com.project.furniture.service.Userservice;
 import com.project.furniture.dao.ProductDao;
 import com.project.furniture.model.Product;
+import com.project.furniture.model.User;
 import com.project.furniture.repository.ProductRepo;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
@@ -33,6 +39,9 @@ public class ProductController {
 	@Autowired
 	ProductRepo productrepo;
 	
+	@Autowired
+	Userservice userservice;
+	
 	@RequestMapping("addproduct")
 	public ModelAndView addproduct()
 	{
@@ -40,9 +49,36 @@ public class ProductController {
 		return mv;
 	}
 	
+	@RequestMapping("dashboard")
+	public ModelAndView viewdashboard()
+	{
+		ModelAndView mv = new ModelAndView("admindashboard");
+		return mv;
+	}
+	
+	@RequestMapping("adminaccount")
+	public ModelAndView viewAccount(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("id") == null)
+		{
+			mv.setViewName("index");
+		}
+		else
+		{
+			User user = userservice.getuser((Integer)session.getAttribute("id"));
+			mv.addObject("user", user);
+			mv.setViewName("addminprofile");
+		}
+		
+		return mv;
+	}
+	
 	@RequestMapping("saveproduct")
 	public ModelAndView saveproduct(ProductDao productdao, @RequestParam("imageUrl") MultipartFile multipartFile) throws IOException 
 	{
+		System.out.println(productdao);
 		ModelAndView mv  = productservice.saveProduct(productdao, multipartFile);
 		if(mv.getViewName().equals("products"))
 		{

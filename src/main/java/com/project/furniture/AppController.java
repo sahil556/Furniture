@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.project.furniture.dao.ProductDao;
 import com.project.furniture.model.Product;
@@ -32,10 +33,13 @@ public class AppController {
 	ProductService productservice;
 	
 	@GetMapping("/")
-	public String viewHomePage()
+	public ModelAndView viewHomePage()
 	{
+		List<Product> product = productservice.listproducts();
+		ModelAndView model = new ModelAndView("home");
+		model.addObject("products", product);
 		System.out.println("hi");
-		return "index";
+		return model;
 	}
 	@RequestMapping("update/{id}")
 	public String updateProduct(@PathVariable(value="id") String id, Model model)
@@ -46,11 +50,9 @@ public class AppController {
 		return "addproduct";	
 	}
 	@RequestMapping("update_product/{id}")
-	public ModelAndView update_product(@PathVariable(value="id") String id, ProductDao productdao, @RequestParam("imageUrl") MultipartFile multipartFile) throws IOException 
+	public RedirectView update_product(@PathVariable(value="id") String id, ProductDao productdao, @RequestParam("imageUrl") MultipartFile multipartFile) throws IOException 
 	{
-		ModelAndView mv = productservice.save_upted_product(Integer.parseInt(id), productdao, multipartFile);
-		List<Product> product = productservice.listproducts();
-		mv.addObject("products", product);
-		return mv;
+		ModelAndView mv = productservice.save_updated_product(Integer.parseInt(id), productdao, multipartFile);
+		return new RedirectView("/viewproduct");
 	}
 }

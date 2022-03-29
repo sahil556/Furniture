@@ -103,11 +103,16 @@
 								</div>
 								<div class="form-group mb-3">
 									<label for="category">Category</label> <select
-										class="custom-select tm-select-accounts" id="category">
-										<option selected>Select category</option>
-										<option value="1">New Arrival</option>
-										<option value="2">Most Popular</option>
-										<option value="3">Trending</option>
+										class="custom-select tm-select-accounts" id="category" name="category">
+										
+										<option selected>
+										<c:if test="${not empty product.id}"><c:out value = "${product.category}"/></c:if><c:if test="${empty product.id}"><c:out value = "select category"/></c:if>(chooosen)
+										</option>
+										<option value="sofa">Sofa</option>
+										<option value="bed">Bed</option>
+										<option value="chair">Chair</option>
+										<option value="tvbox">Tv box</option>
+										<option value="diningtable">Dining table</option>
 									</select>
 								</div>
 								<div class="row">
@@ -121,16 +126,21 @@
 											value="${product.price}" name="price" type="text"
 											class="form-control validate" required />
 									</div>
-								</div>
+									<div class="form-group mb-3 col-xs-12 col-sm-6">
+										<label for="stock">Discount </label> <input id="stock"
+											value="${product.discount}" placeholder="in %" name="discount" type="number"
+											class="form-control validate" required />
+									</div>
+						 		</div>
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 								<div class="tm-product-img-dummy mx-auto">
 									<img src="/productimg/${product.imageURL}" id="output"
-										alt="No image" width="350px" /> 
+										alt="No image" width="350px" height="230px" /> 
 								</div>
 								<div class="custom-file mt-3 mb-3">
 									<input id="fileInput" value="${product.imageURL}" type="file" name="imageUrl"
-										onchange="readURL(this)" style="display:none" /> <input type="button"
+										onchange="readURL(this)" style="display:none"/> <input type="button"
 										class="btn btn-primary btn-block mx-auto"
 										value="UPLOAD PRODUCT IMAGE"
 										name="imageUrl"

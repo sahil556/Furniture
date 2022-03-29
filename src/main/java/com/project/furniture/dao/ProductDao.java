@@ -11,13 +11,18 @@ public class ProductDao {
 	private @NonNull int quantity;
 	private @NonNull double price;
 	private String description;
+	private int discount;
+	private String category;
 	
-	public ProductDao(String name, String imageUrl, int quantity, double price, String description) {
+	
+	public ProductDao(String name, String imageUrl, int quantity, double price, String description, int discount, String category) {
 		super();
 		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
 		this.description = description;
+		this.discount = discount;
+		this.category = category;
 	}
 	public ProductDao(Product product)
 	{
@@ -27,8 +32,24 @@ public class ProductDao {
 		this.quantity = product.getQuantity();
 		this.price = product.getPrice();
 		this.description = product.getDescription();
+		this.discount = product.getDiscount();
+		this.category = product.getCategory();
 	}
-
+	
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+	
 	public ProductDao() {
 		super();
 	}
@@ -74,8 +95,9 @@ public class ProductDao {
 	}
 	@Override
 	public String toString() {
-		return "ProductDao [name=" + name + ", imageUrl=" + imageUrl + ", quantity=" + quantity + ", price=" + price
-				+ ", description=" + description + "]";
+		return "ProductDao [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + ", quantity=" + quantity
+				+ ", price=" + price + ", description=" + description + ", discount=" + discount + ", category="
+				+ category + "]";
 	}
 	
 }

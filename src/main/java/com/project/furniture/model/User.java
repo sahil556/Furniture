@@ -36,7 +36,20 @@ public class User {
     @Column(name = "role")
     private String role="user";
     
-    public String getRole() {
+    @Column(name="imageurl")
+    private String imageurl;
+    
+    
+    
+    public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+
+	public String getRole() {
 		return role;
 	}
 
@@ -54,7 +67,7 @@ public class User {
 	}
 
 	public User( String email, String firstname, String lastname, String password, String address,
-			int pincode, String role) {
+			int pincode, String role, String imageurl) {
 		super();
 		this.email = email;
 		this.firstname = firstname;
@@ -63,6 +76,7 @@ public class User {
 		this.address = address;
 		this.pincode = pincode;
 		this.role = role;
+		this.imageurl = imageurl;
 	}
 
 	public Integer getId() {

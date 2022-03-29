@@ -7,8 +7,19 @@ public class SignUpDao {
     private String password;
     private String address;
     private int pincode;
+    private String imageurl;
+    
+    
 
-    public String getAddress() {
+    public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+
+	public String getAddress() {
 		return address;
 	}
 
@@ -59,7 +70,7 @@ public class SignUpDao {
 	@Override
 	public String toString() {
 		return "SignUpDao [firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", password="
-				+ password + ", address=" + address + ", pincode=" + pincode + "]";
+				+ password + ", address=" + address + ", pincode=" + pincode + ", imageurl=" + imageurl + "]";
 	}
 	
 }
