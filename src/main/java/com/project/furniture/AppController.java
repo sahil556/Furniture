@@ -38,7 +38,6 @@ public class AppController {
 		List<Product> product = productservice.listproducts();
 		ModelAndView model = new ModelAndView("home");
 		model.addObject("products", product);
-		System.out.println("hi");
 		return model;
 	}
 	@RequestMapping("update/{id}")

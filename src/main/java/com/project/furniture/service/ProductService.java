@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.project.furniture.dao.AddToCart;
 import com.project.furniture.dao.CartItemDao;
 import com.project.furniture.dao.Cartdao;
 import com.project.furniture.dao.ProductDao;
@@ -21,6 +22,7 @@ import com.project.furniture.utils.FileUploadUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,10 +52,21 @@ public class ProductService {
         }
         double totalCost = 0;
         for (CartItemDao cartItemDto :cartItems){
-            totalCost += (cartItemDto.getProduct().getPrice()* cartItemDto.getQuantity());
+            totalCost += (cartItemDto.getProduct().getPrice()* cartItemDto.getQuantity() - (cartItemDto.getProduct().getPrice()* cartItemDto.getQuantity() * 0.01 * cartItemDto.getProduct().getDiscount() ) );
         }
         return new Cartdao(cartItems,totalCost);
     }
+	
+	
+	public void deleteCartItem(int id, int userId) 
+	{
+		if (cartrepository.existsById(id))
+		{
+        cartrepository.deleteById(id);
+		}
+	}
+	
+	
 	public static CartItemDao getDtoFromCart(Cart cart) {
 	        return new CartItemDao(cart);
 	    }
@@ -61,7 +74,7 @@ public class ProductService {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		Product product = new Product();
 
-		System.out.println(fileName);
+		
 
 		product.setName(productdao.getName());
 		product.setImageURL(fileName);
@@ -128,5 +141,16 @@ public class ProductService {
 		
 	}
 	
-
+	public void updateCartItem(AddToCart addtocart, User user, Product product)
+	{
+		@SuppressWarnings("deprecation")
+		Cart cart  = cartrepository.getOne(addtocart.getId());
+		cart.setQuantity(addtocart.getQuantity());
+		cart.setCreatedDate(new Date());
+		cartrepository.save(cart);
+	}
+	
+	public void deleteUserCartItems(User user) {
+        cartrepository.deleteByUser(user);
+    }
 }

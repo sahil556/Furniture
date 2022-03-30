@@ -45,22 +45,20 @@ public class Userservice {
         	{
         		mv = new ModelAndView("adminprofile");
         	}
-        	
-             System.out.println(signInDao);
+        	HttpSession session = request.getSession();
+            session.setAttribute("id", user.getId());
+            
              mv.addObject("id",user.getId());
              mv.addObject("user",user);
              mv.addObject("products", product);
              mv.addObject("message", "login successful");
-             
-             HttpSession session = request.getSession();
-             session.setAttribute("id", user.getId());
              
              return mv;
              
         }
         else
         {
-        	ModelAndView mv = new ModelAndView("index");
+        	ModelAndView mv = new ModelAndView("login");
         	mv.addObject("message", "Invalid credential");
         	return mv;
         }
@@ -74,7 +72,7 @@ public class Userservice {
 		if(user == null)
 		{
 			user = new User(signupdao.getEmail() ,signupdao.getFirstname(), signupdao.getLastname(),  signupdao.getPassword(), signupdao.getAddress(), signupdao.getPincode(), "user", fileName);
-			ModelAndView mv = new ModelAndView("index");
+			ModelAndView mv = new ModelAndView("login");
 			String uploadDir = "src/main/webapp/userimg/";
 			try {
 				FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
@@ -85,15 +83,39 @@ public class Userservice {
 			}
 			userrepo.save(user);
 			
-        	mv.addObject("message", "Account created successfully !");
+        	mv.addObject("message", "created");
         	return mv;
 		}
 		else
 		{
-			ModelAndView mv = new ModelAndView("register");
+			ModelAndView mv = new ModelAndView("login");
         	mv.addObject("message", "Email has been taken");
         	return mv;
 		}
+		
+	}
+	public boolean Userauth(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("id") == null)
+		{
+			return false;
+		}
+		return true;
+	}
+	
+	public User getuserfromsession(HttpServletRequest request)
+	{
+		User user;
+		HttpSession session = request.getSession();
+		if(session.getAttribute("id") == null)
+		{
+			return null;
+		}
+		int customer_id = (Integer) session.getAttribute("id");
+		user = getuser(customer_id);
+		return user;
 		
 	}
 	

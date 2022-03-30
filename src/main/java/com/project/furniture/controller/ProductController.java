@@ -43,16 +43,41 @@ public class ProductController {
 	Userservice userservice;
 	
 	@RequestMapping("addproduct")
-	public ModelAndView addproduct()
+	public ModelAndView addproduct(HttpServletRequest request)
 	{
-		ModelAndView mv = new ModelAndView("addproduct");
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("id") == null)
+		{
+			mv.setViewName("404");
+		}
+		else
+		{
+			User user = userservice.getuser((Integer)session.getAttribute("id"));
+			mv.addObject("user", user);
+			mv.setViewName("addproduct");
+		}
+		
 		return mv;
+		
 	}
 	
 	@RequestMapping("dashboard")
-	public ModelAndView viewdashboard()
+	public ModelAndView viewdashboard(HttpServletRequest request)
 	{
-		ModelAndView mv = new ModelAndView("admindashboard");
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("id") == null)
+		{
+			mv.setViewName("404");
+		}
+		else
+		{
+			User user = userservice.getuser((Integer)session.getAttribute("id"));
+			mv.addObject("user", user);
+			mv.setViewName("admindashboard");
+		}
+		
 		return mv;
 	}
 	
@@ -63,13 +88,13 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("id") == null)
 		{
-			mv.setViewName("index");
+			mv.setViewName("404");
 		}
 		else
 		{
 			User user = userservice.getuser((Integer)session.getAttribute("id"));
 			mv.addObject("user", user);
-			mv.setViewName("addminprofile");
+			mv.setViewName("adminprofile");
 		}
 		
 		return mv;
@@ -78,7 +103,7 @@ public class ProductController {
 	@RequestMapping("saveproduct")
 	public ModelAndView saveproduct(ProductDao productdao, @RequestParam("imageUrl") MultipartFile multipartFile) throws IOException 
 	{
-		System.out.println(productdao);
+		
 		ModelAndView mv  = productservice.saveProduct(productdao, multipartFile);
 		if(mv.getViewName().equals("products"))
 		{
@@ -89,17 +114,35 @@ public class ProductController {
 	}
 	
 	@RequestMapping("viewproduct")
-	public ModelAndView viewproduct() throws UnsupportedEncodingException
+	public ModelAndView viewproduct(HttpServletRequest request) throws UnsupportedEncodingException
 	{   
-		List<Product> product = productservice.listproducts();
-		ModelAndView model = new ModelAndView("products");
-		model.addObject("products", product);
-		model.addObject("update", 43);
-		return model;
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("id") == null)
+		{
+			mv.setViewName("home");
+		}
+		else
+		{
+			User user = userservice.getuser((Integer)session.getAttribute("id"));
+			mv.addObject("user", user);
+			List<Product> product = productservice.listproducts();
+			mv.setViewName("products");
+			mv.addObject("products", product);
+		}
+		
+		return mv;
+		
 	}
 	@RequestMapping("delete/{id}")
-	public RedirectView deleteProduct(@PathVariable(value="id") String id) throws UnsupportedEncodingException
+	public RedirectView deleteProduct(@PathVariable(value="id") String id, HttpServletRequest request) throws UnsupportedEncodingException
 	{
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("id") == null)
+		{
+			return new RedirectView("/login");
+		}
 		productservice.deleteproduct(Integer.parseInt(id));
 		return new RedirectView("/viewproduct");
 	}

@@ -65,7 +65,7 @@
 					</div>
 					<div class="main__logo">
 						<h1 class="main__logo--title">
-							<a class="main__logo--link" href="index.html"><img
+							<a class="main__logo--link" href="/"><img
 								class="main__logo--img" src="assets/img/logo/nav-log.webp"
 								alt="logo-img"></a>
 						</h1>
@@ -74,9 +74,9 @@
 						<nav class="header__menu--navigation">
 							<ul class="d-flex">
 								<li class="header__menu--items"><a
-									class="header__menu--link" href="home.jsp">Home </a></li>
+									class="header__menu--link" href="#">Home </a></li>
 								<li class="header__menu--items"><a
-									class="header__menu--link" href="about.jsp">About US </a></li>
+									class="header__menu--link" href="furea-about">About US </a></li>
 								<!-- <li class="header__menu--items">
                                     <a class="header__menu--link " href="#">Pages <span class="menu__plus--icon">+</span></a>
                                     <ul class="header__sub--menu">
@@ -90,7 +90,7 @@
                                     </ul>
                                 </li> -->
 								<li class="header__menu--items"><a
-									class="header__menu--link" href="contact.jsp">Contact </a></li>
+									class="header__menu--link" href="furea-contact">Contact </a></li>
 							</ul>
 						</nav>
 					</div>
@@ -114,8 +114,14 @@
                                     </svg> <span class="visually-hidden">Search</span>
 							</a>
 							</li>
+							<li>
+							<c:if test="${user.id > 0}">
+							 	<h3>Hello, ${user.firstname}</h3>
+							 	</c:if>
+							</li>
+							&nbsp;
 							 <li class="header__account--items">
-                                <a class="header__account--btn" href="/viewaccount">
+                                <a class="header__account--btn" href="/userprofile">
                                     <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg> 
                                     <span class="visually-hidden">My Account</span>
                                 </a>
@@ -157,7 +163,7 @@
 				<nav class="offcanvas__menu">
 					<ul class="offcanvas__menu_ul">
 						<li class="offcanvas__menu_li"><a
-							class="offcanvas__menu_item" href="home.jsp">Home</a></li>
+							class="offcanvas__menu_item" href="#">Home</a></li>
 
 						<!-- <li class="offcanvas__menu_li">
                             <a class="offcanvas__menu_item" href="#">Pages</a>
@@ -172,14 +178,19 @@
                             </ul>
                         </li> -->
 						<li class="offcanvas__menu_li"><a
-							class="offcanvas__menu_item" href="about.jsp">About</a></li>
+							class="offcanvas__menu_item" href="/furea-about">About</a></li>
 						<li class="offcanvas__menu_li"><a
-							class="offcanvas__menu_item" href="contact.jsp">Contact</a></li>
+							class="offcanvas__menu_item" href="/furea-contact">Contact</a></li>
 					</ul>
+					<c:choose>
+						<c:when test="${user.id > 0}">
+						
+						</c:when>
+						<c:otherwise>
 					<div class="offcanvas__account--items">
 						<a
 							class="offcanvas__account--items__btn d-flex align-items-center"
-							href="login.html"> <span
+							href="/login"> <span
 							class="offcanvas__account--items__icon"> <svg
 									xmlns="http://www.w3.org/2000/svg" width="20.51"
 									height="19.443" viewBox="0 0 512 512">
@@ -196,6 +207,8 @@
 								Register</span>
 						</a>
 					</div>
+					</c:otherwise>
+						</c:choose>
 				</nav>
 			</div>
 		</div>
@@ -205,7 +218,7 @@
 		<div class="offcanvas__stikcy--toolbar" tabindex="-1">
 			<ul class="d-flex justify-content-between">
 				<li class="offcanvas__stikcy--toolbar__list"><a
-					class="offcanvas__stikcy--toolbar__btn" href="index.html"> <span
+					class="offcanvas__stikcy--toolbar__btn" href="/"> <span
 						class="offcanvas__stikcy--toolbar__icon"> <svg
 								xmlns="http://www.w3.org/2000/svg" fill="none" width="21.51"
 								height="21.443" viewBox="0 0 22 17">
@@ -216,7 +229,7 @@
 					</span> <span class="offcanvas__stikcy--toolbar__label">Home</span>
 				</a></li>
 				<li class="offcanvas__stikcy--toolbar__list"><a
-					class="offcanvas__stikcy--toolbar__btn" href="shop.html"> <span
+					class="offcanvas__stikcy--toolbar__btn" href="/"> <span
 						class="offcanvas__stikcy--toolbar__icon"> <svg
 								fill="currentColor" xmlns="http://www.w3.org/2000/svg"
 								width="18.51" height="17.443" viewBox="0 0 448 512">
@@ -516,7 +529,7 @@
                                                         </svg> <span
 																class="visually-hidden">Quick View</span>
 														</a></li>
-														<li class="product__items--action__list"><a
+														<!-- <li class="product__items--action__list"><a
 															class="product__items--action__btn" href="/addtowishlist/${product.id}">
 																<svg class="product__items--action__btn--svg"
 																	xmlns="http://www.w3.org/2000/svg" width="17.51"
@@ -526,7 +539,7 @@
 																		transform="translate(0 0)" fill="currentColor"></path>
                                                         </svg> <span
 																class="visually-hidden">Wishlist</span>
-														</a></li>
+														</a></li>-->
 												
 													</ul>
 												</div>
@@ -559,8 +572,11 @@
 														<span class="current__price">&#x20B9;${product.price - ((0.01 * product.price)* product.discount ) }</span> <span
 															class="old__price">&#x20B9;${product.price }</span>
 													</div>
+													<form action="/add" method="post">
+													<input type="hidden" name="id" value="${product.id}">
+													<input type="hidden" name="quantity" value="1">
 													<a class="product__items--action__cart--btn primary__btn"
-														href="/add/${product.id}"> <svg
+														> <svg
 															class="product__items--action__cart--btn__icon"
 															xmlns="http://www.w3.org/2000/svg" width="13.897"
 															height="14.565" viewBox="0 0 18.897 21.565">
@@ -568,8 +584,9 @@
 																d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z"
 																transform="translate(-2.667 -1.366)" fill="currentColor"></path>
                                                 </svg> <span
-														class="add__to--cart__text"> Add to cart</span>
+														class="add__to--cart__text"><button type="submit" style="all:unset"> Add to cart</button></span>
 													</a>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -666,8 +683,11 @@
 														<span class="current__price">&#x20B9;${product.price - ((0.01 * product.price)* product.discount ) }</span> <span
 															class="old__price">&#x20B9;${product.price}</span>
 													</div>
+													<form action="/add" method="post">
+													<input type="hidden" name="id" value="${product.id}">
+													<input type="hidden" name="quantity" value="1">
 													<a class="product__items--action__cart--btn primary__btn"
-														href="/add/${product.id}"> <svg
+														> <svg
 															class="product__items--action__cart--btn__icon"
 															xmlns="http://www.w3.org/2000/svg" width="13.897"
 															height="14.565" viewBox="0 0 18.897 21.565">
@@ -675,8 +695,9 @@
 																d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z"
 																transform="translate(-2.667 -1.366)" fill="currentColor"></path>
                                                 </svg> <span
-														class="add__to--cart__text"> Add to cart</span>
+														class="add__to--cart__text"><button type="submit" style="all:unset"> Add to cart</button></span>
 													</a>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -729,7 +750,7 @@
                                                         </svg> <span
 																class="visually-hidden">Quick View</span>
 														</a></li>
-														<li class="product__items--action__list"><a
+														<!-- <li class="product__items--action__list"><a
 															class="product__items--action__btn" href="/addtowishlist/${product.id}">
 																<svg class="product__items--action__btn--svg"
 																	xmlns="http://www.w3.org/2000/svg" width="17.51"
@@ -739,7 +760,7 @@
 																		transform="translate(0 0)" fill="currentColor"></path>
                                                         </svg> <span
 																class="visually-hidden">Wishlist</span>
-														</a></li>
+														</a></li> -->
 													
 													</ul>
 												</div>
@@ -772,8 +793,11 @@
 														<span class="current__price">&#x20B9;${product.price - ((0.01 * product.price)* product.discount ) }</span> <span
 															class="old__price">&#x20B9;${product.price }</span>
 													</div>
+													<form action="/add" method="post">
+													<input type="hidden" name="id" value="${product.id}">
+													<input type="hidden" name="quantity" value="1">
 													<a class="product__items--action__cart--btn primary__btn"
-														href="/add/${product.id}"> <svg
+														> <svg
 															class="product__items--action__cart--btn__icon"
 															xmlns="http://www.w3.org/2000/svg" width="13.897"
 															height="14.565" viewBox="0 0 18.897 21.565">
@@ -781,8 +805,9 @@
 																d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z"
 																transform="translate(-2.667 -1.366)" fill="currentColor"></path>
                                                 </svg> <span
-														class="add__to--cart__text"> Add to cart</span>
+														class="add__to--cart__text"><button type="submit" style="all:unset"> Add to cart</button></span>
 													</a>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -835,7 +860,7 @@
                                                         </svg> <span
 																class="visually-hidden">Quick View</span>
 														</a></li>
-														<li class="product__items--action__list"><a
+														<!-- <li class="product__items--action__list"><a
 															class="product__items--action__btn" href="/addtowishlist/${product.id}">
 																<svg class="product__items--action__btn--svg"
 																	xmlns="http://www.w3.org/2000/svg" width="17.51"
@@ -845,7 +870,7 @@
 																		transform="translate(0 0)" fill="currentColor"></path>
                                                         </svg> <span
 																class="visually-hidden">Wishlist</span>
-														</a></li>
+														</a></li> -->
 														
 													</ul>
 												</div>
@@ -878,8 +903,11 @@
 														<span class="current__price">&#x20B9;${product.price - ((0.01 * product.price)* product.discount ) }</span> <span
 															class="old__price">&#x20B9;${product.price }</span>
 													</div>
+													<form action="/add" method="post">
+													<input type="hidden" name="id" value="${product.id}">
+													<input type="hidden" name="quantity" value="1">
 													<a class="product__items--action__cart--btn primary__btn"
-														href="/add/${product.id}"> <svg
+														> <svg
 															class="product__items--action__cart--btn__icon"
 															xmlns="http://www.w3.org/2000/svg" width="13.897"
 															height="14.565" viewBox="0 0 18.897 21.565">
@@ -887,8 +915,9 @@
 																d="M16.84,8.082V6.091a4.725,4.725,0,1,0-9.449,0v4.725a.675.675,0,0,0,1.35,0V9.432h5.4V8.082h-5.4V6.091a3.375,3.375,0,0,1,6.75,0v4.691a.675.675,0,1,0,1.35,0V9.433h3.374V21.581H4.017V9.432H6.041V8.082H2.667V21.641a1.289,1.289,0,0,0,1.289,1.29h16.32a1.289,1.289,0,0,0,1.289-1.29V8.082Z"
 																transform="translate(-2.667 -1.366)" fill="currentColor"></path>
                                                 </svg> <span
-														class="add__to--cart__text"> Add to cart</span>
+														class="add__to--cart__text"><button type="submit" style="all:unset"> Add to cart</button></span>
 													</a>
+													</form>
 												</div>
 											</div>
 										</div>
@@ -2774,16 +2803,16 @@
 							</h2>
 							<ul class="footer__widget--menu footer__widget--inner">
 								<li class="footer__widget--menu__list"><a
-									class="footer__widget--menu__text" href="about.html">About
+									class="footer__widget--menu__text" href="/furea-about">About
 										Us</a></li>
 								<li class="footer__widget--menu__list"><a
-									class="footer__widget--menu__text" href="contact.html">Contact
+									class="footer__widget--menu__text" href="furea-contact">Contact
 										Us</a></li>
 								<li class="footer__widget--menu__list"><a
-									class="footer__widget--menu__text" href="privacy-policy.html">Privacy
+									class="footer__widget--menu__text" href="furea-privacy-policy.html">Privacy
 										Policy</a></li>
 								<li class="footer__widget--menu__list"><a
-									class="footer__widget--menu__text" href="faq.html">Frequently</a></li>
+									class="footer__widget--menu__text" href="furea-faq">Frequently</a></li>
 							</ul>
 						</div>
 					</div>
@@ -2792,7 +2821,7 @@
 			<div
 				class="footer__bottom d-flex justify-content-between align-items-center">
 				<p class="copyright__content  m-0">
-					Copyright Â© 2022 <a class="copyright__content--link"
+					Copyright &#169; 2022 <a class="copyright__content--link"
 						href="index.html">Furniture</a> . All Rights Reserved.Design By
 					Furniture
 				</p>

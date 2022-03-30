@@ -48,18 +48,18 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						href="products.html"> <i class="fas fa-shopping-cart"></i>
+						href="#"> <i class="fas fa-shopping-cart"></i>
 							Products
 					</a></li>
 
-					<li class="nav-item"><a class="nav-link" href="accounts.html">
+					<li class="nav-item"><a class="nav-link" href="/adminaccount">
 							<i class="far fa-user"></i> Accounts
 					</a></li>
 
 				</ul>
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link d-block"
-						href="login.html"> Admin, <b>Logout</b>
+						href="/logout"> Admin, <b>Logout</b>
 					</a></li>
 				</ul>
 			</div>
@@ -106,7 +106,7 @@
 										class="custom-select tm-select-accounts" id="category" name="category">
 										
 										<option selected>
-										<c:if test="${not empty product.id}"><c:out value = "${product.category}"/></c:if><c:if test="${empty product.id}"><c:out value = "select category"/></c:if>(chooosen)
+										<c:if test="${not empty product.id}"><c:out value = "${product.category}"/></c:if><c:if test="${empty product.id}"><c:out value = "select category"/></c:if>
 										</option>
 										<option value="sofa">Sofa</option>
 										<option value="bed">Bed</option>

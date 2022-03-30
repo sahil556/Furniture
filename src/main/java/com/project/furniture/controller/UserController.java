@@ -17,8 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.project.furniture.model.Order;
 import com.project.furniture.model.User;
 import com.project.furniture.repository.*;
+import com.project.furniture.service.OrderService;
 import com.project.furniture.service.Userservice;
 
 @RestController
@@ -28,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	Userservice userservice;
+	
+	@Autowired
+	OrderService orderservice;
 	
 	@RequestMapping("register")
 	public ModelAndView register()
@@ -50,11 +55,91 @@ public class UserController {
        
 	}
 	@PostMapping("signup")
-	public RedirectView Signup(SignUpDao userdao , @RequestParam("imageUrl") MultipartFile multipartFile) throws IOException 
+	public ModelAndView Signup(SignUpDao userdao , @RequestParam("imageUrl") MultipartFile multipartFile) throws IOException 
 	{
-		System.out.println(userdao);
 		ModelAndView mv =  userservice.signUp(userdao, multipartFile);
+		return mv;
+	}
+	
+	@RequestMapping("logout")
+	public RedirectView logout(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		if((session.getAttribute("id") != null))
+		{
+			session.invalidate();
+			
+		}
 		return new RedirectView("/");
+	}
+	
+	@RequestMapping("furea-about")
+	public ModelAndView aboutus()
+	{
+		ModelAndView mv = new ModelAndView("about");
+		return mv;
+	}
+	@RequestMapping("furea-contact")
+	public ModelAndView contact()
+	{
+		ModelAndView mv = new ModelAndView("contact");
+		return mv;
+	}
+	
+	@RequestMapping("userprofile")
+	public ModelAndView viewprofile(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		if(session.getAttribute("id") == null)
+		{
+			return new ModelAndView("login");
+		}
+		ModelAndView mv = new ModelAndView("my-account");
+		int customer_id = (Integer) session.getAttribute("id");
+		User user = userservice.getuser(customer_id);
+		mv.addObject("user",user);
+		if( orderservice.listOrders(user) == null)
+		{
+			
+		}
+		else
+		{
+			List<Order> orderlist = orderservice.listOrders(user);
+			mv.addObject("orders",orderlist);
+		}
+		
+		
+		return mv;
+
+	}
+	
+	@RequestMapping("furea-privacy-policy")
+	public ModelAndView privacypolicy(HttpServletRequest request)
+	{
+		User user = userservice.getuserfromsession(request);
+		ModelAndView mv = new ModelAndView("privacy-policy");
+		mv.addObject("user",user);
+		return mv;
+	}
+	
+	@RequestMapping("furea-faq")
+	public ModelAndView faq(HttpServletRequest request)
+	{
+		User user = userservice.getuserfromsession(request);
+		ModelAndView mv = new ModelAndView("faq");
+		mv.addObject("user",user);
+		return mv;
+	}
+	
+	@RequestMapping("myaddress")
+	public ModelAndView viewaddress(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView("my-account2");
+		int customer_id = (Integer) session.getAttribute("id");
+		User user = userservice.getuser(customer_id);
+		mv.addObject("user",user);
+		return mv;
 	}
 	
 }

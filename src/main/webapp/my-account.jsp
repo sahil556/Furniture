@@ -1,12 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!doctype html>
 <html lang="en">
 
 <head>
 <meta charset="utf-8">
-<title>Furea - Cart</title>
+<title>Furea - My Account</title>
 <meta name="description" content="Morden Bootstrap HTML5 Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/x-icon"
@@ -28,7 +28,7 @@
 
 <body>
 
-	<!-- start main header -->
+	<!-- Start header area -->
 	<header
 		class="header__section header__others border-bottom header__transparent mb-30">
 		<div class="header__topbar bg__primary">
@@ -71,9 +71,9 @@
 						<nav class="header__menu--navigation">
 							<ul class="d-flex">
 								<li class="header__menu--items"><a
-									class="header__menu--link" href="/">Home </a></li>
+									class="header__menu--link" href="#">Home </a></li>
 								<li class="header__menu--items"><a
-									class="header__menu--link" href="furea-about">About US </a></li>
+									class="header__menu--link" href="about">About US </a></li>
 								<!-- <li class="header__menu--items">
                                     <a class="header__menu--link " href="#">Pages <span class="menu__plus--icon">+</span></a>
                                     <ul class="header__sub--menu">
@@ -87,7 +87,7 @@
                                     </ul>
                                 </li> -->
 								<li class="header__menu--items"><a
-									class="header__menu--link" href="furea-contact">Contact </a></li>
+									class="header__menu--link" href="contact">Contact </a></li>
 							</ul>
 						</nav>
 					</div>
@@ -115,7 +115,7 @@
 									<h3>Hello, ${user.firstname}</h3>
 								</c:if></li> &nbsp;
 							<li class="header__account--items"><a
-								class="header__account--btn" href="/userprofile"> <svg
+								class="header__account--btn" href="/viewaccount"> <svg
 										xmlns="http://www.w3.org/2000/svg" width="26.51"
 										height="23.443" viewBox="0 0 512 512">
 										<path
@@ -167,7 +167,7 @@
 				<nav class="offcanvas__menu">
 					<ul class="offcanvas__menu_ul">
 						<li class="offcanvas__menu_li"><a
-							class="offcanvas__menu_item" href="/">Home</a></li>
+							class="offcanvas__menu_item" href="home.jsp">Home</a></li>
 
 						<!-- <li class="offcanvas__menu_li">
                             <a class="offcanvas__menu_item" href="#">Pages</a>
@@ -182,9 +182,9 @@
                             </ul>
                         </li> -->
 						<li class="offcanvas__menu_li"><a
-							class="offcanvas__menu_item" href="/furea-about">About</a></li>
+							class="offcanvas__menu_item" href="/about">About</a></li>
 						<li class="offcanvas__menu_li"><a
-							class="offcanvas__menu_item" href="/furea-contact">Contact</a></li>
+							class="offcanvas__menu_item" href="/contact">Contact</a></li>
 					</ul>
 					<c:choose>
 						<c:when test="${user.id > 0}">
@@ -209,6 +209,7 @@
                                 </svg>
 								</span> <span class="offcanvas__account--items__label">Login /
 										Register</span>
+
 								</a>
 							</div>
 						</c:otherwise>
@@ -298,122 +299,23 @@
 		</div>
 		<!-- End serch box area -->
 	</header>
-
-	<!-- End main header -->
-
-
-
-	<!-- End Offcanvas header menu -->
-
-	<!-- Start Offcanvas stikcy toolbar -->
-	<div class="offcanvas__stikcy--toolbar" tabindex="-1">
-		<ul class="d-flex justify-content-between">
-			<li class="offcanvas__stikcy--toolbar__list"><a
-				class="offcanvas__stikcy--toolbar__btn" href="index.html"> <span
-					class="offcanvas__stikcy--toolbar__icon"> <svg
-							xmlns="http://www.w3.org/2000/svg" fill="none" width="21.51"
-							height="21.443" viewBox="0 0 22 17">
-							<path fill="currentColor"
-								d="M20.9141 7.93359c.1406.11719.2109.26953.2109.45703 0 .14063-.0469.25782-.1406.35157l-.3516.42187c-.1172.14063-.2578.21094-.4219.21094-.1406 0-.2578-.04688-.3515-.14062l-.9844-.77344V15c0 .3047-.1172.5625-.3516.7734-.2109.2344-.4687.3516-.7734.3516h-4.5c-.3047 0-.5742-.1172-.8086-.3516-.2109-.2109-.3164-.4687-.3164-.7734v-3.6562h-2.25V15c0 .3047-.11719.5625-.35156.7734-.21094.2344-.46875.3516-.77344.3516h-4.5c-.30469 0-.57422-.1172-.80859-.3516-.21094-.2109-.31641-.4687-.31641-.7734V8.46094l-.94922.77344c-.11719.09374-.24609.14062-.38672.14062-.16406 0-.30468-.07031-.42187-.21094l-.35157-.42187C.921875 8.625.875 8.50781.875 8.39062c0-.1875.070312-.33984.21094-.45703L9.73438.832031C10.1094.527344 10.5312.375 11 .375s.8906.152344 1.2656.457031l8.6485 7.101559zm-3.7266 6.50391V7.05469L11 1.99219l-6.1875 5.0625v7.38281h3.375v-3.6563c0-.3046.10547-.5624.31641-.7734.23437-.23436.5039-.35155.80859-.35155h3.375c.3047 0 .5625.11719.7734.35155.2344.211.3516.4688.3516.7734v3.6563h3.375z"></path></svg>
-				</span> <span class="offcanvas__stikcy--toolbar__label">Home</span>
-			</a></li>
-			<li class="offcanvas__stikcy--toolbar__list"><a
-				class="offcanvas__stikcy--toolbar__btn" href="shop.html"> <span
-					class="offcanvas__stikcy--toolbar__icon"> <svg
-							fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-							width="18.51" height="17.443" viewBox="0 0 448 512">
-							<path
-								d="M416 32H32A32 32 0 0 0 0 64v384a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32V64a32 32 0 0 0-32-32zm-16 48v152H248V80zm-200 0v152H48V80zM48 432V280h152v152zm200 0V280h152v152z"></path></svg>
-				</span> <span class="offcanvas__stikcy--toolbar__label">Shop</span>
-			</a></li>
-			<li class="offcanvas__stikcy--toolbar__list "><a
-				class="offcanvas__stikcy--toolbar__btn search__open--btn"
-				href="javascript:void(0)"> <span
-					class="offcanvas__stikcy--toolbar__icon"> <svg
-							xmlns="http://www.w3.org/2000/svg" width="22.51" height="20.443"
-							viewBox="0 0 512 512">
-							<path
-								d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-								fill="none" stroke="currentColor" stroke-miterlimit="10"
-								stroke-width="32" />
-							<path fill="none" stroke="currentColor" stroke-linecap="round"
-								stroke-miterlimit="10" stroke-width="32"
-								d="M338.29 338.29L448 448" /></svg>
-				</span> <span class="offcanvas__stikcy--toolbar__label">Search</span>
-			</a></li>
-			<li class="offcanvas__stikcy--toolbar__list"><a
-				class="offcanvas__stikcy--toolbar__btn minicart__open--btn"
-				href="javascript:void(0)"> <span
-					class="offcanvas__stikcy--toolbar__icon"> <svg
-							xmlns="http://www.w3.org/2000/svg" width="18.51" height="15.443"
-							viewBox="0 0 18.51 15.443">
-                            <path
-								d="M79.963,138.379l-13.358,0-.56-1.927a.871.871,0,0,0-.6-.592l-1.961-.529a.91.91,0,0,0-.226-.03.864.864,0,0,0-.226,1.7l1.491.4,3.026,10.919a1.277,1.277,0,1,0,1.844,1.144.358.358,0,0,0,0-.049h6.163c0,.017,0,.034,0,.049a1.277,1.277,0,1,0,1.434-1.267c-1.531-.247-7.783-.55-7.783-.55l-.205-.8h7.8a.9.9,0,0,0,.863-.651l1.688-5.943h.62a.936.936,0,1,0,0-1.872Zm-9.934,6.474H68.568c-.04,0-.1.008-.125-.085-.034-.118-.082-.283-.082-.283l-1.146-4.037a.061.061,0,0,1,.011-.057.064.064,0,0,1,.053-.025h1.777a.064.064,0,0,1,.063.051l.969,4.34,0,.013a.058.058,0,0,1,0,.019A.063.063,0,0,1,70.03,144.853Zm3.731-4.41-.789,4.359a.066.066,0,0,1-.063.051h-1.1a.064.064,0,0,1-.063-.051l-.789-4.357a.064.064,0,0,1,.013-.055.07.07,0,0,1,.051-.025H73.7a.06.06,0,0,1,.051.025A.064.064,0,0,1,73.76,140.443Zm3.737,0L76.26,144.8a.068.068,0,0,1-.063.049H74.684a.063.063,0,0,1-.051-.025.064.064,0,0,1-.013-.055l.973-4.357a.066.066,0,0,1,.063-.051h1.777a.071.071,0,0,1,.053.025A.076.076,0,0,1,77.5,140.448Z"
-								transform="translate(-62.393 -135.3)" fill="currentColor" />
-                            </svg>
-				</span> <span class="offcanvas__stikcy--toolbar__label">Cart</span> <span
-					class="items__count">3</span>
-			</a></li>
-		</ul>
-	</div>
-	<!-- End Offcanvas stikcy toolbar -->
-
-	<!-- Start offCanvas minicart -->
-
-	<!-- End offCanvas minicart -->
-
-	<!-- Start serch box area -->
-	<div class="predictive__search--box " tabindex="-1">
-		<div class="predictive__search--box__inner">
-			<h2 class="predictive__search--title">Search Products</h2>
-			<form class="predictive__search--form" action="#">
-				<label> <input class="predictive__search--input"
-					placeholder="Search Here" type="text">
-				</label>
-				<button class="predictive__search--button"
-					aria-label="search button">
-					<svg class="header__search--button__svg"
-						xmlns="http://www.w3.org/2000/svg" width="30.51" height="25.443"
-						viewBox="0 0 512 512">
-						<path
-							d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
-							fill="none" stroke="currentColor" stroke-miterlimit="10"
-							stroke-width="32" />
-						<path fill="none" stroke="currentColor" stroke-linecap="round"
-							stroke-miterlimit="10" stroke-width="32"
-							d="M338.29 338.29L448 448" /></svg>
-				</button>
-			</form>
-		</div>
-		<button class="predictive__search--close__btn"
-			aria-label="search close btn">
-			<svg class="predictive__search--close__icon"
-				xmlns="http://www.w3.org/2000/svg" width="40.51" height="30.443"
-				viewBox="0 0 512 512">
-				<path fill="currentColor" stroke="currentColor"
-					stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
-					d="M368 368L144 144M368 144L144 368" /></svg>
-		</button>
-	</div>
-	<!-- End serch box area -->
-	</header>
 	<!-- End header area -->
 
 	<main class="main__content_wrapper">
 
 		<!-- Start breadcrumb section -->
 		<section class="breadcrumb__section breadcrumb__bg">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="row row-cols-1">
 					<div class="col">
 						<div class="breadcrumb__content">
-							<h1 class="breadcrumb__content--title text-white mb-10">Shopping
-								Cart</h1>
+							<h1 class="breadcrumb__content--title text-white mb-10">My
+								Account</h1>
 							<ul class="breadcrumb__content--menu d-flex">
 								<li class="breadcrumb__content--menu__items"><a
 									class="text-white" href="index.html">Home</a></li>
 								<li class="breadcrumb__content--menu__items"><span
-									class="text-white">Shopping Cart</span></li>
+									class="text-white">My Account</span></li>
 							</ul>
 						</div>
 					</div>
@@ -422,155 +324,90 @@
 		</section>
 		<!-- End breadcrumb section -->
 
-		<!-- cart section start -->
-		<section class="cart__section section--padding">
-			<div class="container-fluid">
-				<div class="cart__section--inner">
-
-					<h2 class="cart__title mb-40">Shopping Cart</h2>
-					<div class="row">
-						<div class="col-lg-8">
-							<div class="cart__table">
-								<table class="cart__table--inner">
-									<thead class="cart__table--header">
-										<tr class="cart__table--header__items">
-											<th class="cart__table--header__list">Product</th>
-											<th class="cart__table--header__list">Price</th>
-											<th class="cart__table--header__list">Quantity</th>
-											<th class="cart__table--header__list">Total</th>
+		<!-- my account section start -->
+		<section class="my__account--section section--padding">
+			<div class="container">
+				<p class="account__welcome--text">Hello, ${user.firstname}
+					welcome to your dashboard!</p>
+				<div class="my__account--section__inner border-radius-10 d-flex">
+					<div class="account__left--sidebar">
+						<h3 class="account__content--title mb-20">My Profile</h3>
+						<ul class="account__menu">
+							<li class="account__menu--list active"><a href="/">Dashboard</a></li>
+							<li class="account__menu--list"><a href="myaddress">Addresses</a></li>
+							<!-- <li class="account__menu--list"><a href="wishlist.html">Wishlist</a></li>-->
+							<li class="account__menu--list"><a href="logout">Log Out</a></li>
+						</ul>
+					</div>
+					<div class="account__wrapper">
+						<div class="account__content">
+							<h3 class="account__content--title mb-20">Orders History</h3>
+							<div class="account__table--area">
+								<table class="account__table">
+									<thead class="account__table--header">
+										<tr class="account__table--header__child">
+											<th class="account__table--header__child--items">Order</th>
+											<th class="account__table--header__child--items">Product</th>
+											<th class="account__table--header__child--items">Date</th>
+											<th class="account__table--header__child--items">Payment
+												Status</th>
+											<th class="account__table--header__child--items">Fulfillment
+												Status</th>
+											<th class="account__table--header__child--items">Total</th>
 										</tr>
 									</thead>
-									<tbody class="cart__table--body">
-										<c:forEach items="${products.cartItems}" var="cartitem">
-											<form action="updatecart/${cartitem.id}">
-												<tr class="cart__table--body__items">
-													<td class="cart__table--body__list">
-														<div class="cart__product d-flex align-items-center">
-															<button class="cart__remove--btn"
-																aria-label="search button" type="button">
-																<a href="deleteitem/${cartitem.id}"><svg
-																		fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-																		viewBox="0 0 24 24" width="16px" height="16px">
-																	<path
-																			d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z" /></a>
-																</svg>
-															</button>
-															<div class="cart__thumbnail">
-																<a href="quickview/${cartitem.product.id}"><img
-																	class="border-radius-5"
-																	src="/productimg/${cartitem.product.imageURL}"
-																	alt="cart-product"></a>
-															</div>
-															<input type="hidden" value="${cartitem.id}" name="id">
-															<input type="hidden" value="${cartitem.product.id}"
-																name="productId">
-															<div class="cart__content">
-																<h4 class="cart__content--title">
-																	<a href="product-details.html">${cartitem.product.name }</a>
-																</h4>
-																<span class="cart__content--variant">COLOR: Image
-																	color</span> <span class="cart__content--variant">WEIGHT:
-																	15 Kg</span>
-															</div>
-														</div>
-													</td>
-													<c:set var="price"
-														value="${(cartitem.product.price) - ((0.01 * cartitem.product.discount)*cartitem.product.price)}" />
-													<td class="cart__table--body__list"><span
-														class="cart__price">${price}</span></td>
-													<td class="cart__table--body__list">
-														<div class="quantity__box">
-															<button type="submit"
-																class="quantity__value quickview__value--quantity decrease"
-																aria-label="quantity value" value="Decrease Value">-</button>
-															<label> <input type="number"
-																class="quantity__number quickview__value--number"
-																name="quantity" value="${cartitem.quantity}" />
-															</label>
-															<button type="submit"
-																class="quantity__value quickview__value--quantity increase"
-																aria-label="quantity value" value="Increase Value">+</button>
-														</div>
-													</td>
-													<td class="cart__table--body__list"><span
-														class="cart__price end">&#x20B9;${cartitem.quantity * price }</span>
-													</td>
-												</tr>
-											</form>
+									<tbody class="account__table--body mobile__none">
+										<c:forEach items="${orders}" var="order">
+											<tr class="account__table--body__child">
+												<td class="account__table--body__child--items">#0125${order.id}</td>
+
+												<td class="account__table--body__child--items"><c:forEach
+														items="${order.orderItems }" var="item">&#8226; ${item.product.name}<br>
+													</c:forEach></td>
+												<td class="account__table--body__child--items">${order.createdDate}
+												</td>
+												<td class="account__table--body__child--items">Cash</td>
+												<td class="account__table--body__child--items">Unfulfilled</td>
+												<td class="account__table--body__child--items">&#x20B9;${order.totalPrice}
+													INR</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+									<tbody class="account__table--body mobile__block">
+										<c:forEach items="${orders}" var="order">
+											<tr class="account__table--body__child">
+												<td class="account__table--body__child--items"><strong>Order</strong>
+													<span>#0125${order.id}</span></td>
+												<td class="account__table--body__child--items"><strong>Product</strong>
+													<span><c:forEach items="${order.orderItems }"
+															var="item">&#8226; ${item.product.name}<br>
+														</c:forEach></span></td>
+												<td class="account__table--body__child--items"><strong>Date</strong>
+													<span>${order.createdDate}</span></td>
+												<td class="account__table--body__child--items"><strong>Payment
+														Status</strong> <span>Cash</span></td>
+												<td class="account__table--body__child--items"><strong>Fulfillment
+														Status</strong> <span>Unfulfilled</span></td>
+												<td class="account__table--body__child--items"><strong>Total</strong>
+													<span>&#x20B9;${order.totalPrice}INR</span></td>
+											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-								<div class="continue__shopping d-flex justify-content-between">
-									<a class="continue__shopping--link" href="/">Continue
-										shopping</a> <a class="continue__shopping--clear" href="deleteall">Clear
-										Cart</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="cart__summary border-radius-10">
-								<div class="coupon__code mb-30">
-									<h3 class="coupon__code--title">Coupon</h3>
-									<p class="coupon__code--desc">Enter your coupon code if you
-										have one.</p>
-									<div class="coupon__code--field d-flex">
-										<label> <input
-											class="coupon__code--field__input border-radius-5"
-											placeholder="Coupon code" type="text">
-										</label>
-										<button class="coupon__code--field__btn primary__btn"
-											type="submit">Apply Coupon</button>
-									</div>
-								</div>
-								<div class="cart__note mb-20">
-									<h3 class="cart__note--title">Note</h3>
-									<p class="cart__note--desc">Add special instructions for
-										your seller...</p>
-									<textarea class="cart__note--textarea border-radius-5"></textarea>
-								</div>
-								<div class="cart__summary--total mb-20">
-									<table class="cart__summary--total__table">
-										<tbody>
-											<tr class="cart__summary--total__list">
-												<td class="cart__summary--total__title text-left">SUBTOTAL</td>
-												<td class="cart__summary--amount text-right">&#x20B9;${products.totalCost}</td>
-											</tr>
-											<tr class="cart__summary--total__list">
-												<td class="cart__summary--total__title text-left">GRAND
-													TOTAL</td>
-												<td class="cart__summary--amount text-right">&#x20B9;${products.totalCost}</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="cart__summary--footer">
-									<p class="cart__summary--footer__desc">Shipping & taxes
-										calculated at checkout</p>
-									<c:if test="${products.totalCost > 0}">
-										<ul class="d-flex justify-content-between">
-											<li><a
-												class="cart__summary--footer__btn primary__btn checkout"
-												href="/checkout">Check Out</a></li>
-										</ul>
-									</c:if>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- cart section end -->
-
-		<!-- Start product section -->
-		<!-- End product section -->
+		<!-- my account section end -->
 
 		<!-- Start Newsletter banner section -->
 		<section class="newsletter__banner--section section--padding pt-0">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="newsletter__banner--thumbnail position__relative">
 					<img class="newsletter__banner--thumbnail__img"
-						src="assets/img/banner/banner-bg2.webp" alt="newsletter-banner">
+						src="assets/img/banner/banner-bg7.webp" alt="newsletter-banner">
 					<div class="newsletter__content newsletter__subscribe">
 						<h5 class="newsletter__content--subtitle text-white">Want to
 							offer regularly ?</h5>
@@ -599,40 +436,6 @@
 			</div>
 		</section>
 		<!-- End Newsletter banner section -->
-
-		<!-- Start brand logo section -->
-		<div class="brand__logo--section bg__secondary section--padding">
-			<div class="container-fluid">
-				<div class="row row-cols-1">
-					<div class="col">
-						<div
-							class="brand__logo--section__inner d-flex justify-content-center align-items-center">
-							<div class="brand__logo--items">
-								<img class="brand__logo--items__thumbnail--img"
-									src="assets/img/logo/brand-logo1.webp" alt="brand logo">
-							</div>
-							<div class="brand__logo--items">
-								<img class="brand__logo--items__thumbnail--img"
-									src="assets/img/logo/brand-logo2.webp" alt="brand logo">
-							</div>
-							<div class="brand__logo--items">
-								<img class="brand__logo--items__thumbnail--img"
-									src="assets/img/logo/brand-logo3.webp" alt="brand logo">
-							</div>
-							<div class="brand__logo--items">
-								<img class="brand__logo--items__thumbnail--img"
-									src="assets/img/logo/brand-logo4.webp" alt="brand logo">
-							</div>
-							<div class="brand__logo--items">
-								<img class="brand__logo--items__thumbnail--img"
-									src="assets/img/logo/brand-logo5.webp" alt="brand logo">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End brand logo section -->
 
 	</main>
 
@@ -736,12 +539,7 @@
             </div>
         </div>
     </footer>
-	
 	<!-- End footer section -->
-
-	<!-- Quickview Wrapper -->
-
-	<!-- Quickview Wrapper End -->
 
 	<!-- Scroll top bar -->
 	<button id="scroll__top">

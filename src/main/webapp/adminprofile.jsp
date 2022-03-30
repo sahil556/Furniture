@@ -67,7 +67,7 @@
             </ul>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link d-block" href="login.html">
+                <a class="nav-link d-block" href="logout">
                   Admin, <b>Logout</b>
                 </a>
               </li>
@@ -76,7 +76,7 @@
         </div>
       </nav>
       <div class="container mt-5">
-        <div class="row tm-content-row">
+        <!-- <div class="row tm-content-row">
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
               <h2 class="tm-block-title">List of Accounts</h2>
@@ -84,13 +84,11 @@
               <select class="custom-select">
                 <option value="0">Select account</option>
                 <option value="1">Admin</option>
-                <option value="2">Editor</option>
-                <option value="3">Merchant</option>
                 <option value="4">Customer</option>
               </select>
             </div>
           </div>
-        </div>
+        </div>-->
         <!-- row -->
         <div class="row tm-content-row">
           <div class="tm-block-col tm-col-avatar">
@@ -98,7 +96,7 @@
               <h2 class="tm-block-title">Change Avatar</h2>
               <div class="tm-avatar-container">
                 <img
-                  src="admin_style/img/avatar.png"
+                  src="/userimg/user.imageurl"
                   alt="Avatar"
                   class="tm-avatar img-fluid mb-4"
                 />
@@ -122,7 +120,7 @@
                     name="name"
                     type="text"
                     value="${user.firstname}"
-                    class="form-control validate"
+                    class="form-control"
                     readonly
                   />
                 </div>
@@ -133,7 +131,7 @@
                     name="name"
                     type="text"
                     value="${user.lastname}"
-                    class="form-control validate"
+                    class="form-control "
                     readonly
                   />
                 </div>
@@ -144,7 +142,7 @@
                     name="email"
                     type="email"
                     value="${user.email}"
-                    class="form-control validate"
+                    class="form-control "
                     readonly
                   />
                 </div>
@@ -155,7 +153,7 @@
                     name="name"
                     type="text"
                     value="${user.address}"
-                    class="form-control validate"
+                    class="form-control "
                   />
                 </div>
                 <!--  <div class="form-group col-lg-6">

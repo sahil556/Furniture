@@ -44,7 +44,7 @@
 					</a></li>
 
 					<li class="nav-item"><a class="nav-link active"
-						href="products.html"> <i class="fas fa-shopping-cart"></i>
+						href="/viewproduct"> <i class="fas fa-shopping-cart"></i>
 							Products
 					</a></li>
 
@@ -54,7 +54,7 @@
 				</ul>
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link d-block"
-						href="login.html"> Admin, <b>Logout</b>
+						href="/logout"> Admin, <b>Logout</b>
 					</a></li>
 				</ul>
 			</div>
